@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import { useSearchParams, NavLink, useLocation } from 'react-router-dom';
-import { findFilm } from "components/Services/GetFilms";
+import { findFilm } from 'components/Services/GetFilms';
+import { Button } from './Movies.styled';
 const axios = require('axios').default;
 
 
@@ -51,9 +52,9 @@ const Movies = () => {
                     autoFocus
                     placeholder="Find film"
                 />
-                <button type="submit">
+                <Button type="submit">
                     <span>Search</span>
-                </button>
+                </Button>
             </form>
             <ul>
                 {selectedFilms.map(({ id, title }) => (
