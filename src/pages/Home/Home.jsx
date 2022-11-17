@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getTrendingFilms } from 'components/Services/GetFilms';
+import { getTrendingFilms } from '../../components/Services/GetFilms';
 import { NavLink } from 'react-router-dom';
 
 const axios = require('axios').default;
@@ -15,7 +15,9 @@ const Home = () => {
                 const url = getTrendingFilms();
                 const response = await axios.get(url);
 
-                const { data: { results }, } = response;
+        const {
+          data: { results },
+        } = response;
                 setFilms(results);
             } catch (error) {
                 console.log(error);

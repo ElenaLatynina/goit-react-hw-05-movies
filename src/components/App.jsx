@@ -11,6 +11,7 @@ const Reviews = lazy(() => import('./Reviews/Reviews'));
 
 export const App = () => {
   return (
+    <>
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<Home />}></Route>
@@ -21,6 +22,7 @@ export const App = () => {
         </Route>
         <Route path="*" element={<NotFound />}></Route>
         </Route>
-    </Routes>
+      </Routes>
+      </>
   );
 };

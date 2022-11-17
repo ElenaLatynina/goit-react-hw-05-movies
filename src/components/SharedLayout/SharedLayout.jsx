@@ -14,12 +14,11 @@ const SharedLayout = () => {
                     <StyledNavLink to="movies">
                         Movies
                     </StyledNavLink>
-                    <Suspense fallback={<div>We are loading</div>}>
-                        <Outlet />
-                    </Suspense>
                 </nav>
             </Header>
-
+            <Suspense fallback={<div>We are loading</div>}>
+                <Outlet />
+            </Suspense>
         </Container>
     );
 };
