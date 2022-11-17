@@ -1,11 +1,8 @@
-import { useState, useEffect , NavLink} from 'react';
-import { useLocation } from 'react-router-dom';
+import { useState, useEffect, Suspense } from 'react';
+import { useParams , useLocation, NavLink,Outlet} from 'react-router-dom';
 import { ReturnButton,MovieContainer, GenresList, GenresItem, Poster, MovieInfo } from './MovieDetailes.styled';
 import { getDescription } from 'components/Services/GetFilms';
 const axios = require('axios').default;
-
-
-
 
 const MovieDetailes = () => {
     const { filmInfo, setFilmInfo } = useState([]);
@@ -58,8 +55,13 @@ const MovieDetailes = () => {
                     <li>
                         <NavLink to="cast" state={{from:backLinkHref}}>Cast</NavLink>
                     </li>
-                    <li>Reviews</li>
+                    <li>
+                        <NavLink to="reviews" state={{ from: backLinkHref }}>Reviews</NavLink>
+                    </li>
                 </ul>
+                <Suspense fallback={<div>Is loading</div>}>
+                    <Outlet/>
+                </Suspense>
             </div>
         </>
     );
