@@ -11,9 +11,9 @@ const Home = () => {
         getFilms();
 
         async function getFilms() {
-            try {
-                const url = getTrendingFilms();
-                const response = await axios.get(url);
+        try {
+            const url = getTrendingFilms();
+            const response = await axios.get(url);
 
         const {
           data: { results },
@@ -25,20 +25,18 @@ const Home = () => {
         }
     }, []);
 
-
     return (
         <main>
             <h2>
                 Trending today
             </h2>
-            <ul>
-                {films.map(({ id, title }) => (
-                    <li key={id}>
-                        <NavLink to={`/movies/${id}`}>{ title}</NavLink>
-                        
-                    </li>
-                ))}
-            </ul>
+        <ul>
+            {films.map(({ id, title }) => (
+            <li key={id}>
+                <NavLink to={`/movies/${id}`}>{title}</NavLink>
+            </li>
+            ))}
+        </ul>
         </main>
     );
 };

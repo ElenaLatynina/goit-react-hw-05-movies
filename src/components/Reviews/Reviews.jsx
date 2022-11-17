@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getReviews } from 'components/Services/GetFilms';
+import { getReviews } from '../Services/GetFilms';
 const axios = require('axios').default;
 
 export const Reviews = () => {
@@ -8,9 +8,9 @@ export const Reviews = () => {
     const { movieId } = useParams();
 
     useEffect(() => {
-        searchFilms();
+        getFilms();
 
-        async function searchFilms() {
+        async function getFilms() {
             try {
                 const url = getReviews(movieId);
                 const response = await axios.get(url);

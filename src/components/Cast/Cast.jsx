@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getActors } from 'components/Services/GetFilms';
+import { getActors } from '../Services/GetFilms';
 import { Image } from './Cast.styled';
 const axios = require('axios').default;
 
@@ -10,9 +10,9 @@ const Cast = () => {
     const { movieId } = useParams();
 
     useEffect(() => {
-        searchFilms();
+        getFilms();
 
-        async function searchFilms() {
+        async function getFilms() {
             try {
             const url = getActors(movieId);
             const response = await axios.get(url);

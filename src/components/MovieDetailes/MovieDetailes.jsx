@@ -1,7 +1,7 @@
 import { useState, useEffect, Suspense } from 'react';
 import { useParams , useLocation, NavLink,Outlet} from 'react-router-dom';
 import { ReturnButton,MovieContainer, GenresList, GenresItem, Poster, MovieInfo } from './MovieDetailes.styled';
-import { getDescription } from 'components/Services/GetFilms';
+import { getDescription } from '../Services/GetFilms';
 const axios = require('axios').default;
 
 const MovieDetailes = () => {
@@ -10,9 +10,9 @@ const MovieDetailes = () => {
     const { movieId } = useParams();
 
     useEffect(() => {
-        searchFilms();
+        getFilms();
 
-        async function searchFilms() {
+        async function getFilms() {
             try {
                 const url = getDescription(movieId);
                 const response = await axios.get(url);
