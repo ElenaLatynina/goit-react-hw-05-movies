@@ -10,22 +10,22 @@ const MovieDetailes = () => {
     const { movieId } = useParams();
 
     useEffect(() => {
-        searhFilms();
+        searchFilms();
 
-        async function searhFilms() {
+        async function searchFilms() {
             try {
                 const url = getDescription(movieId);
                 const response = await axios.get(url);
                 const { data } = response;
-
+                
                 setFilmInfo(data);
             } catch (error) {
                 console.log(error);
             }
         }
 
-    }, [movieId]);
-    
+    }, [movieId, setFilmInfo]);
+
     const { title, overview, vote_average, genres, release_date, poster_path } = filmInfo;
     const year = new Date(release_date).getFullYear();
     const backLinkHref = location?.state?.from ?? '/';

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getActors } from 'components/Services/GetFilms';
+import { Image } from './Cast.styled';
 const axios = require('axios').default;
 
 
@@ -9,9 +10,9 @@ const Cast = () => {
     const { movieId } = useParams();
 
     useEffect(() => {
-        serchFilms();
+        searchFilms();
 
-        async function serchFilms() {
+        async function searchFilms() {
             try {
             const url = getActors(movieId);
             const response = await axios.get(url);
@@ -31,16 +32,16 @@ const Cast = () => {
     return (
         actors.map(({ name, character, profile_path }) => (
             <ul key={name}>
-                <Image src={profile_path ?
-                    `https://image.tmdb.org/t/p/w500${profile_path}`
-                    : 'https://ods-metering-systems.com/wp-content/uploads/2017/02/NoImageAvailable-1.gif'}
+                <Image src={profile_path
+            ? `https://image.tmdb.org/t/p/w500${profile_path}`
+            : 'https://ods-metering-systems.com/wp-content/uploads/2017/02/NoImageAvailable-1.gif'}
                     alt="actors_photo" />
                 <li>
                     <p>{name}</p>
                     <p>Character:{character}</p>
                 </li>
             </ul>
-        ));
+        ))
         
     );
 };
