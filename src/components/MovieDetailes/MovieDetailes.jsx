@@ -1,6 +1,6 @@
 import { useState, useEffect, Suspense } from 'react';
 import { useParams , useLocation, Link, Outlet} from 'react-router-dom';
-import { ReturnButton, MovieContainer } from './MovieDetailes.styled';
+import { ReturnLink, MovieContainer, Additional } from './MovieDetailes.styled';
 import { MovieItem } from 'components/MovieItem/MovieItem';
 // import { getDescription } from '../Services/GetFilms';
 // const axios = require('axios').default;
@@ -37,9 +37,9 @@ const MovieDetailes = () => {
 
     return (
         <MovieContainer>
-            <ReturnButton to={backLink}>
+            <ReturnLink to={backLink}>
                 Back
-            </ReturnButton>
+            </ReturnLink>
                 
             <MovieItem
                 poster={movie.poster}
@@ -51,14 +51,14 @@ const MovieDetailes = () => {
            
             <div>
                 <h3>Additional Information</h3>
-                <ul>
+                <Additional>
                     <li>
                         <Link to="cast" state={{ from: backLink }}>Cast</Link>
                     </li>
                     <li>
                         <Link to="reviews" state={{ from: backLink }}>Reviews</Link>
                     </li>
-                </ul>
+                </Additional>
                 <Suspense fallback={<div>Is loading</div>}>
                     <Outlet />
                 </Suspense>
