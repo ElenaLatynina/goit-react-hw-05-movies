@@ -50,24 +50,23 @@ const MovieDetailes = () => {
                     genres={movie.genres}
                 </MovieInfo>
            
-            <div>
-                <h3>Additional Information</h3>
-                <ul>
-                    <li>
-                        <NavLink to="cast" state={{from:backLink}}>Cast</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="reviews" state={{ from: backLink }}>Reviews</NavLink>
-                    </li>
-                </ul>
-                <Suspense fallback={<div>Is loading</div>}>
-                    <Outlet/>
-                </Suspense>
+                <div>
+                    <h3>Additional Information</h3>
+                    <ul>
+                        <li>
+                            <NavLink to="cast" state={{ from: backLink }}>Cast</NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="reviews" state={{ from: backLink }}>Reviews</NavLink>
+                        </li>
+                    </ul>
+                    <Suspense fallback={<div>Is loading</div>}>
+                        <Outlet />
+                    </Suspense>
                 </div>
-                </MovieContainer>
+            </MovieContainer>
 
         </main>);
-    }
 
-
+}
 export default MovieDetailes;
