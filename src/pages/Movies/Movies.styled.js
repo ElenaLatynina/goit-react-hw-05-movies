@@ -15,6 +15,8 @@ margin-bottom: 24px;
 export const Input = styled.input`
 margin-right:12px;
 border: 1px solid navy;
+height: 25px;
+
 
 `;
 

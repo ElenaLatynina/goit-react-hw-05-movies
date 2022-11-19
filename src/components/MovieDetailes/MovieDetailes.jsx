@@ -1,6 +1,6 @@
 import { useState, useEffect, Suspense } from 'react';
-import { useParams , useLocation, NavLink,Outlet} from 'react-router-dom';
-import { ReturnButton,MovieContainer, MovieInfo } from './MovieDetailes.styled';
+import { useParams , useLocation, NavLink, Outlet} from 'react-router-dom';
+import { ReturnButton,MovieContainer, MovieInfo, Poster, Score, Title, Overview, Genres } from './MovieDetailes.styled';
 // import { getDescription } from '../Services/GetFilms';
 // const axios = require('axios').default;
 
@@ -37,17 +37,19 @@ const MovieDetailes = () => {
     }, [id]);
 
     return (
-        <main>
             <MovieContainer>
                 <ReturnButton to={backLink}>
                     Back
                 </ReturnButton>
+                <Poster src={movie.poster } alt={movie.title} width="240"  height="320"/>
                 <MovieInfo>
-                    poster={movie.poster}
-                    title={movie.title}
-                    score={movie.score}
-                    overview={movie.overview}
-                    genres={movie.genres}
+                    <Title>{movie.title}</Title>
+                    <Score>User Score: {movie.score}%</Score>
+                    <h3>Overview</h3>
+                    <Overview>{movie.overview}</Overview>
+                    <Genres>Genres</Genres>
+                    <p>{ movie.genres}</p>
+                    
                 </MovieInfo>
            
                 <div>
@@ -66,7 +68,7 @@ const MovieDetailes = () => {
                 </div>
             </MovieContainer>
 
-        </main>);
+        );
 
 }
 export default MovieDetailes;
