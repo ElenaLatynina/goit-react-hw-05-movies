@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getReviews } from '../Services/GetFilms';
+import { getReviews } from 'components/Services/GetFilms';
 const axios = require('axios').default;
 
 export const Reviews = () => {

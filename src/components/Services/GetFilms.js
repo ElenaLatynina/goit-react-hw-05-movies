@@ -1,5 +1,6 @@
 const API_KEY = '07365d3730901c9189566ffe38d9d5bb';
 
+
 export const getTrendingFilms = () => {
     const url = `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`;
     return url;
