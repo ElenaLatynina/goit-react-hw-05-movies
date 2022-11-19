@@ -13,13 +13,13 @@ const placeHolder =
 
 const Cast = () => {
     const [actors, setActors] = useState([]);
-    const { Id } = useParams();
+    const { id } = useParams();
 
     useEffect(() => {
-        const url = `${BASE_URL}movie/${Id}/credits?api_key=${API_KEY}&language=en-US`;
+        const urlCast = `${BASE_URL}movie/${id}/credits?api_key=${API_KEY}&language=en-US`;
 
         function getActors() {
-            fetch(url).then(response => response.json())
+            fetch(urlCast).then(response => response.json())
                 .then(data => {
                     setActors(data.cast.map(({ profile_path, name, character }) => {
                         return {
@@ -33,14 +33,14 @@ const Cast = () => {
                 })
             .catch(error => console.log(error));
         }
-    getActors();},[Id]);
+    getActors();},[id]);
 
     return (
         <ActorsList>
             {actors.map(({ name, character, poster }) => {
                 return (
                     <ActorCard key={name}>
-                        <Image src={poster} alt={name} widtn="150px" height="200px" />
+                        <Image src={poster} alt={name} widtn="150" height="200" />
                         <Info>
                             <Name>{name}</Name>
                             <Character>Character:{character}</Character>
@@ -50,9 +50,7 @@ const Cast = () => {
             }
            
             )}
-               </ActorsList>)
-
-     
+        </ActorsList>);
     
 };
 

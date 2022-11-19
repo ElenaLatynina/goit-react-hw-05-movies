@@ -11,10 +11,10 @@ const BASE_URL = 'https://api.themoviedb.org/3/';
 
 export const Reviews = () => {
     const [reviews, setReviews] = useState([]);
-    const { Id } = useParams();
+    const { id } = useParams();
 
     useEffect(() => {
-        const url = `${BASE_URL}movie/${Id}/reviews?api_key=${API_KEY}&language=en-US`;
+        const url = `${BASE_URL}movie/${id}/reviews?api_key=${API_KEY}&language=en-US`;
 
 
         getFilms();
@@ -29,7 +29,7 @@ export const Reviews = () => {
                }).catch(error => console.log(error));
         }
         getFilms();
-    }, [Id]);
+    }, [id]);
 
     return (
         reviews.length !== 0 ? (

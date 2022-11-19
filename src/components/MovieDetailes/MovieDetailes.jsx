@@ -1,6 +1,6 @@
 import { useState, useEffect, Suspense } from 'react';
 import { useParams , useLocation, Link, Outlet} from 'react-router-dom';
-import { ReturnLink, MovieContainer, Additional } from './MovieDetailes.styled';
+import { ReturnLink, MovieContainer, Additional, Title } from './MovieDetailes.styled';
 import { MovieItem } from 'components/MovieItem/MovieItem';
 // import { getDescription } from '../Services/GetFilms';
 // const axios = require('axios').default;
@@ -50,7 +50,7 @@ const MovieDetailes = () => {
             />
            
             <div>
-                <h3>Additional Information</h3>
+                <Title>Additional Information</Title>
                 <Additional>
                     <li>
                         <Link to="cast" state={{ from: backLink }}>Cast</Link>
