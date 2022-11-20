@@ -1,5 +1,5 @@
 import { MovieContainer, Poster, Title, Score, Overview , TitlePart} from "./MovieItem.styled"
-
+import PropTypes from 'prop-types';
 
 export const MovieItem = ({ poster, title, score, overview, genres }) => {
     return (
@@ -18,3 +18,11 @@ export const MovieItem = ({ poster, title, score, overview, genres }) => {
         </MovieContainer>
     );
 };
+
+MovieItem.propTypes = {
+poster: PropTypes.string,
+title: PropTypes.string,
+score: PropTypes.number,
+overview: PropTypes.string,
+genres: PropTypes.string,
+}

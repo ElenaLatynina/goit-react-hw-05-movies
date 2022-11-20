@@ -3,6 +3,7 @@ import { useParams , useLocation, Link, Outlet} from 'react-router-dom';
 import { ReturnLink, MovieDetailesContainer, Additional, Title, Arrow } from './MovieDetailes.styled';
 import { MovieItem } from 'components/MovieItem/MovieItem';
 import { HiArrowUturnLeft } from 'react-icons/hi2';
+import PropTypes from 'prop-types';
 
 const API_KEY = '07365d3730901c9189566ffe38d9d5bb';
 const BASE_URL = 'https://api.themoviedb.org/3/';
@@ -72,5 +73,27 @@ const MovieDetailes = () => {
 
 };
 
-
+MovieDetailes.propTypes = {
+  details: PropTypes.arrayOf(
+    PropTypes.exact({
+      poster_path: PropTypes.string,
+      original_title: PropTypes.string.isRequired,
+      popularity: PropTypes.number.isRequired,
+      overview: PropTypes.string.isRequired,
+      genres: PropTypes.arrayOf(
+        PropTypes.exact({
+          name: PropTypes.string.isRequired,
+        })
+      ),
+    })
+  ),
+  backLinkHref: PropTypes.string,
+  additionalInfo: PropTypes.arrayOf(
+    PropTypes.exact({
+      href: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+    })
+  ),
+  path: PropTypes.string,
+};
 export default MovieDetailes;

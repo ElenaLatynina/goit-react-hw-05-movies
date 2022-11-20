@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { Message } from './NotFound.styled';
+import PropTypes from 'prop-types';
 
 
 const NotFound = () => {
@@ -12,3 +13,7 @@ const NotFound = () => {
 };
 
 export default NotFound;
+
+NotFound.propTypes = {
+    Message: PropTypes.string,
+};
