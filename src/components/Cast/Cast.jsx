@@ -12,10 +12,10 @@ const placeHolder =
 
 const Cast = () => {
     const [actors, setActors] = useState([]);
-    const { id } = useParams();
+    const { movieId } = useParams();
 
     useEffect(() => {
-        const urlCast = `${BASE_URL}movie/${id}/credits?api_key=${API_KEY}&language=en-US`;
+        const urlCast = `${BASE_URL}movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`;
 
         function getActors() {
             fetch(urlCast).then(response => response.json())
@@ -32,7 +32,7 @@ const Cast = () => {
                 })
             .catch(error => console.log(error));
         }
-    getActors();},[id]);
+    getActors();},[movieId]);
 
     return (
         <ActorsList>

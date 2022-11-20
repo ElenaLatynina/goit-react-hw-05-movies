@@ -17,7 +17,7 @@ text-decoration: none;
 :hover,
 :focus {
 color: #ffffff;
-background-color: navy;
+background-color: blue;
 }
 `;
 

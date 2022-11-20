@@ -8,10 +8,10 @@ const API_KEY = '07365d3730901c9189566ffe38d9d5bb';
 
 export const Reviews = () => {
     const [reviews, setReviews] = useState([]);
-    const { id } = useParams();
+    const { movieId } = useParams();
 
     useEffect(() => {
-        const urlReview = `${BASE_URL}movie/${id}/reviews?api_key=${API_KEY}&language=en-US`;
+        const urlReview = `${BASE_URL}movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US`;
 
 
         getFilms();
@@ -26,7 +26,7 @@ export const Reviews = () => {
                }).catch(error => console.log(error));
         }
         getFilms();
-    }, [id]);
+    }, [movieId]);
 
     return (
         reviews.length !== 0 ? (

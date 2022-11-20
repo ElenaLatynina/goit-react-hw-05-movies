@@ -2,8 +2,6 @@ import PropTypes from 'prop-types';import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { HomePage } from './Home.styled';
 
-
-
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const API_KEY = '07365d3730901c9189566ffe38d9d5bb';
 
