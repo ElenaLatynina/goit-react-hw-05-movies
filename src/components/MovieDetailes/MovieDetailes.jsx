@@ -1,12 +1,12 @@
 import { useState, useEffect, Suspense } from 'react';
 import { useParams , useLocation, Link, Outlet} from 'react-router-dom';
-import { ReturnLink, MovieContainer, Additional, Title } from './MovieDetailes.styled';
+import { ReturnLink, MovieDetailesContainer, Additional, Title, Arrow } from './MovieDetailes.styled';
 import { MovieItem } from 'components/MovieItem/MovieItem';
-// import { getDescription } from '../Services/GetFilms';
-// const axios = require('axios').default;
+import { HiArrowUturnLeft } from 'react-icons/hi2';
 
 const API_KEY = '07365d3730901c9189566ffe38d9d5bb';
 const BASE_URL = 'https://api.themoviedb.org/3/';
+
 
 const MovieDetailes = () => {
     const [movie, setMovie] = useState({});
@@ -15,10 +15,10 @@ const MovieDetailes = () => {
     const backLink = location.state?.from ?? '/movies';
 
     useEffect(() => {
-        const url = `${BASE_URL}movie/${id}?api_key=${API_KEY}&language=en-US`;
+        const urlMovie = `${BASE_URL}movie/${id}?api_key=${API_KEY}&language=en-US`;
         
         function fetchMovie() {
-            fetch(url).then(response => response.json())
+            fetch(urlMovie).then(response => response.json())
                 .then(data => {
                     setMovie({
                         poster: `https://image.tmdb.org/t/p/w500/${data.poster_path}`,
@@ -36,8 +36,12 @@ const MovieDetailes = () => {
     }, [id]);
 
     return (
-        <MovieContainer>
-            <ReturnLink to={backLink}>
+        <main>
+            <MovieDetailesContainer>
+                <ReturnLink to={backLink}>
+                    <Arrow>
+                        <HiArrowUturnLeft size={12} />
+                    </Arrow>
                 Back
             </ReturnLink>
                 
@@ -48,8 +52,6 @@ const MovieDetailes = () => {
                 overview={movie.overview}
                 genres={movie.genres}
             />
-           
-            <div>
                 <Title>Additional Information</Title>
                 <Additional>
                     <li>
@@ -62,11 +64,11 @@ const MovieDetailes = () => {
                 <Suspense fallback={<div>Is loading</div>}>
                     <Outlet />
                 </Suspense>
-            </div>
-        </MovieContainer>
+           
+        </MovieDetailesContainer>
+        </main>
 
     );
-    
 
 };
 

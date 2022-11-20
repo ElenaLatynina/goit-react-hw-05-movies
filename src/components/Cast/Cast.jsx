@@ -2,11 +2,10 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 // import { getActors } from '../Services/GetFilms';
 import { ActorsList, Image, ActorCard, Info, Name, Character } from './Cast.styled';
-// const axios = require('axios').default;
+import PropTypes from 'prop-types';
 
-
-const API_KEY = '07365d3730901c9189566ffe38d9d5bb';
 const BASE_URL = 'https://api.themoviedb.org/3/';
+const API_KEY = '07365d3730901c9189566ffe38d9d5bb';
 const placeHolder =
   'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png';
 
@@ -52,6 +51,10 @@ const Cast = () => {
             )}
         </ActorsList>);
     
+};
+
+Cast.propTypes = {
+    actors: PropTypes.string,
 };
 
 export default Cast;

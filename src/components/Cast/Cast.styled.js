@@ -1,25 +1,28 @@
 import styled from 'styled-components';
 
 export const Image = styled.img`
-width:120px;
-height: 180px;
-
+width:100%;
+margin-bottom: 14px;
+border: 2px solid #fff;
 `;
 export const ActorsList = styled.ul`
 display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  align-items: center;
-  justify-content: center;
-  list-style: none;
+flex-wrap: wrap;
+gap: 30px;
+align-items: center;
+justify-content: center;
+list-style: none;
 
 `;
-
 
 export const ActorCard = styled.li`
 flex-basis: calc(12% - 30px);
   :not(:last-child) {
     margin-bottom: 30px;
+  }
+  
+  p {
+    margin: 0;
   }
 
 `;
