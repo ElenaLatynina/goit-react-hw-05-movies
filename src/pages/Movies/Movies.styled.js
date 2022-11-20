@@ -21,7 +21,7 @@ font-size: 16px;
 export const Button = styled.button`
 font-size: 16px;
 border-radius: 2px;
-border: 1px solid #6161e9;
+border: 1px solid navy;
 `;
 
 
