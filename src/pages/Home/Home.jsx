@@ -1,22 +1,22 @@
-import { useState, useEffect } from 'react';
-// import { useLocation } from 'react-router-dom';
-// import { getTrendingFilms } from '../../components/Services/GetFilms.js';
-import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { HomePage } from './Home.styled';
 
-// const axios = require('axios').default;
 
-const API_KEY = '07365d3730901c9189566ffe38d9d5bb';
+
 const BASE_URL = 'https://api.themoviedb.org/3/';
+const API_KEY = '07365d3730901c9189566ffe38d9d5bb';
+
 
 const Home = () => {
     const [films, setFilms] = useState([]);
-    // const location = useLocation();
+    const location = useLocation();
 
     useEffect(() => {
-        const url = `${BASE_URL}trending/movie/day?api_key=${API_KEY}`;
+        const urlHome = `${BASE_URL}trending/movie/day?api_key=${API_KEY}`;
 
         function getFilms() {
-            fetch(url).then(response => response.json())
+            fetch(urlHome).then(response => response.json())
                 .then(data => {
                     setFilms(data.results.map(result => ({
                         id: result.id, title: result.title
@@ -28,59 +28,32 @@ const Home = () => {
     }, []);
 
     return (
-        <main>
+        <HomePage>
             <h2>
                 Trending today
             </h2>
         <ul>
             {films.map(({ id, title }) => (
             <li key={id}>
-                <NavLink to={`/movies/${id}`}>{title}</NavLink>
+                    <Link to={`/movies/${id}`}
+                    state={{ from: location }}>{title}</Link>
             </li>
             ))}
         </ul>
-        </main>
+        </HomePage>
     );
 
 };
 
+Home.propTypes = {
+  films: PropTypes.arrayOf(
+    PropTypes.exact({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ),
+};
 
 
-// const Home = () => {
-//     const [films, setFilms] = useState([]);
-
-//     useEffect(() => {
-//         getFilms();
-
-//         async function getFilms() {
-//         try {
-//             const url = getTrendingFilms();
-//             const response = await axios.get(url);
-
-//         const {
-//           data: { results },
-//         } = response;
-//                 setFilms(results);
-//             } catch (error) {
-//                 console.log(error);
-//             }
-//         }
-//     }, []);
-
-//     return (
-//         <main>
-//             <h2>
-//                 Trending today
-//             </h2>
-//         <ul>
-//             {films.map(({ id, title }) => (
-//             <li key={id}>
-//                 <NavLink to={`/movies/${id}`}>{title}</NavLink>
-//             </li>
-//             ))}
-//         </ul>
-//         </main>
-//     );
-// };
 
 export default Home;
