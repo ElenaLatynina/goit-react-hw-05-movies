@@ -11,35 +11,41 @@ export const Reviews = () => {
     const { movieId } = useParams();
 
     useEffect(() => {
-        const urlReview = `${BASE_URL}movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US`;
+        const urlReviews = `${BASE_URL}movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US`;
 
-
-        getFilms();
-
-       function getFilms() {
-           fetch(urlReview).then(response => response.json())
-               .then(data => {
-                   setReviews(data.results.map(({ author_detailes, content }) => ({
-                       author: author_detailes.username,
-                       content: content,
-                   })));
-               }).catch(error => console.log(error));
-        }
-        getFilms();
+    function getReviews()  {
+    fetch(urlReviews)
+      .then(response => response.json())
+      .then(data => {
+        setReviews(
+          data.results.map(({ author_details, content }) => ({
+            author: author_details.username,
+            content: content,
+          }))
+        );
+        })
+        .catch(error => console.log(error));
+    }
+      getReviews();
+      
     }, [movieId]);
 
-    return (
-        reviews.length !== 0 ? (
-            <List>
-      {reviews.map(({ author, content },index) => (
-        <ReviewItem key={index}>
-          <Author>Author: {author}</Author>
-          <Content>{content}</Content>
-        </ReviewItem>
-      ))}
-    </List>)
-        :(<p>We don't have reviews for this movie</p>)
-        
+  return (
+    <>
+      {reviews.length > 0 ? (
+        <List>
+          {reviews.map(({ author, content }, index) => {
+            return (
+              <ReviewItem key={index}>
+                <Author>Author: {author}</Author>
+                <Content>{content}</Content>
+              </ReviewItem>
+            );
+          })};
+
+        </List>
+      ) : (<p>We don't have reviews for this movie</p>) }
+    </>
     );
 };
 
