@@ -1,22 +1,18 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Author, Content, ReviewItem, List } from './Reviews.styled';
+import { fetchReviews } from 'services/GetFilms';
 import PropTypes from 'prop-types';
-
-const BASE_URL = 'https://api.themoviedb.org/3/';
-const API_KEY = '07365d3730901c9189566ffe38d9d5bb';
 
 export const Reviews = () => {
     const [reviews, setReviews] = useState([]);
     const { movieId } = useParams();
 
     useEffect(() => {
-        const urlReviews = `${BASE_URL}movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US`;
 
     function getReviews()  {
-    fetch(urlReviews)
-      .then(response => response.json())
-      .then(data => {
+   
+      fetchReviews(movieId).then(data => {
         setReviews(
           data.results.map(({ author_details, content }) => ({
             author: author_details.username,

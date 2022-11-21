@@ -3,10 +3,8 @@ import { useState, useEffect, Suspense } from 'react';
 import { useParams , useLocation, Link, Outlet} from 'react-router-dom';
 import { ReturnLink, MovieDetailesContainer, Additional, Title, Arrow } from './MovieDetailes.styled';
 import { MovieItem } from 'components/MovieItem/MovieItem';
+import { getDescription } from 'services/GetFilms';
 import { HiArrowUturnLeft } from 'react-icons/hi2';
-
-const BASE_URL = 'https://api.themoviedb.org/3/';
-const API_KEY = '07365d3730901c9189566ffe38d9d5bb';
 
 const MovieDetailes = () => {
   const [movie, setMovie] = useState({});
@@ -15,13 +13,8 @@ const MovieDetailes = () => {
   const backLink = location.state?.from ?? '/movies';
 
   useEffect(() => {
-    
-      const urlMovie = `${BASE_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`;
-      
       function fetchMovie() {
-      fetch(urlMovie)
-        .then(response => response.json())
-        .then(data => {
+       getDescription(movieId).then(data => {
           setMovie({
             poster: `https://image.tmdb.org/t/p/w500/${data.poster_path}`,
             title: data.title,

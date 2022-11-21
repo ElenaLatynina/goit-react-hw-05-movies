@@ -9,22 +9,24 @@ export const getTrendingFilms = () => {
 };
 
 export const getDescription = movieId => {
-    const url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`;
+    const urlMovie = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`;
 
-    return url;
+    return fetch(urlMovie)
+        .then(response => response.json());
 };
 
-export const getActors = movieId => {
-    const url = `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`;
-    return url;
+export const fetchActors = movieId => {
+    const urlCast = `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`;
+    return  fetch(urlCast).then(response => response.json());
 };
 
-export const getReviews = movieId => {
-    const url = `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US&page=1`;
-    return url;
+export const fetchReviews = movieId => {
+    const urlReviews = `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US&page=1`;
+    return fetch(urlReviews)
+      .then(response => response.json());
 };
 
 export const findFilm = query => {
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`;
-    return url;
+    const urlFilm = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`;
+    return  fetch(urlFilm).then(response => response.json());
 };
